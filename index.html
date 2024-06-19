@@ -30,6 +30,7 @@
                     <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Total</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,10 +40,13 @@
         <div class="total">
             <h2>Total: $<span id="grand-total">0.00</span></h2>
         </div>
+
+        <button id="download-pdf">Descargar como PDF</button>
     </div>
     <footer>
         <p>&copy; 2024 Lista de Compras Futurista. Todos los derechos reservados.</p>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

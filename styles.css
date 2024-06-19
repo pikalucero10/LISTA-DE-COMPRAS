@@ -40,7 +40,8 @@ body {
     width: 100%;
     max-width: 900px;
     text-align: center;
-    margin: 10px auto; /* Centra el contenedor horizontalmente */
+    margin: 10px auto;
+    position: relative; /* Añadido para el posicionamiento del botón PDF */
 }
 
 h1 {
@@ -71,8 +72,8 @@ input {
     color: #fff;
     outline: none;
     transition: background 0.3s ease;
-    width: 100%; /* Ajuste para que los inputs ocupen todo el ancho */
-    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 input:focus {
@@ -88,8 +89,8 @@ button {
     cursor: pointer;
     transition: transform 0.3s ease;
     margin-top: 10px;
-    width: 100%; /* Ajuste para que los botones ocupen todo el ancho */
-    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -107,7 +108,7 @@ th, td {
     padding: 15px;
     border: 1px solid #fff;
     color: #fdbb2d;
-    text-align: left; /* Alineación del texto a la izquierda */
+    text-align: left;
 }
 
 th {
@@ -137,7 +138,7 @@ footer {
     width: 100%;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
     .container {
         margin: 20px;
     }
