@@ -40,6 +40,7 @@ body {
     width: 100%;
     max-width: 900px;
     text-align: center;
+    margin: 10px auto; /* Centra el contenedor horizontalmente */
 }
 
 h1 {
@@ -70,6 +71,8 @@ input {
     color: #fff;
     outline: none;
     transition: background 0.3s ease;
+    width: 100%; /* Ajuste para que los inputs ocupen todo el ancho */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
 }
 
 input:focus {
@@ -85,6 +88,8 @@ button {
     cursor: pointer;
     transition: transform 0.3s ease;
     margin-top: 10px;
+    width: 100%; /* Ajuste para que los botones ocupen todo el ancho */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
 }
 
 button:hover {
@@ -102,6 +107,7 @@ th, td {
     padding: 15px;
     border: 1px solid #fff;
     color: #fdbb2d;
+    text-align: left; /* Alineación del texto a la izquierda */
 }
 
 th {
@@ -129,4 +135,26 @@ footer {
     position: absolute;
     bottom: 10px;
     width: 100%;
+}
+
+@media (max-width: 900px) {
+    .container {
+        margin: 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    label, input, button {
+        font-size: 0.9em;
+    }
+
+    table, th, td {
+        font-size: 0.8em;
+    }
+
+    .total h2 {
+        font-size: 1.2em;
+    }
 }
