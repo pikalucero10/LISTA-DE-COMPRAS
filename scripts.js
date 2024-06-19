@@ -1,54 +1,52 @@
-document.getElementById('form').addEventListener('submit', function(event) {
-    event.preventDefault();
+// JavaScript en scripts.js
 
-    const product = document.getElementById('product').value;
-    const price = parseFloat(document.getElementById('price').value);
-    const quantity = parseInt(document.getElementById('quantity').value);
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('form');
+    const shoppingList = document.getElementById('shopping-list');
+    const totalElement = document.getElementById('grand-total');
+    const tbody = shoppingList.querySelector('tbody');
 
-    addProductToList(product, price, quantity);
-    calculateTotal();
-    clearForm();
-});
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-function addProductToList(product, price, quantity) {
-    const tableBody = document.querySelector('#shopping-list tbody');
-    const row = document.createElement('tr');
+        const product = document.getElementById('product').value;
+        const price = parseFloat(document.getElementById('price').value);
+        const quantity = parseInt(document.getElementById('quantity').value);
 
-    const productCell = document.createElement('td');
-    productCell.textContent = product;
+        if (product && !isNaN(price) && !isNaN(quantity) && quantity > 0) {
+            const total = price * quantity;
+            const newRow = `
+                <tr>
+                    <td>${product}</td>
+                    <td>$${price.toFixed(2)}</td>
+                    <td>${quantity}</td>
+                    <td>$${total.toFixed(2)}</td>
+                    <td><button class="delete-btn">Eliminar</button></td>
+                </tr>
+            `;
+            tbody.insertAdjacentHTML('beforeend', newRow);
 
-    const priceCell = document.createElement('td');
-    priceCell.textContent = price.toFixed(2);
-
-    const quantityCell = document.createElement('td');
-    quantityCell.textContent = quantity;
-
-    const totalCell = document.createElement('td');
-    totalCell.textContent = (price * quantity).toFixed(2);
-
-    row.appendChild(productCell);
-    row.appendChild(priceCell);
-    row.appendChild(quantityCell);
-    row.appendChild(totalCell);
-
-    tableBody.appendChild(row);
-}
-
-function calculateTotal() {
-    const tableBody = document.querySelector('#shopping-list tbody');
-    const rows = tableBody.querySelectorAll('tr');
-    let total = 0;
-
-    rows.forEach(row => {
-        const cells = row.querySelectorAll('td');
-        const rowTotal = parseFloat(cells[3].textContent);
-        total += rowTotal;
+            updateTotal();
+            form.reset();
+        } else {
+            alert('Por favor ingresa un producto válido, precio y cantidad.');
+        }
     });
 
-    document.getElementById('grand-total').textContent = total.toFixed(2);
-}
+    tbody.addEventListener('click', function(event) {
+        if (event.target.classList.contains('delete-btn')) {
+            const row = event.target.closest('tr');
+            row.remove();
+            updateTotal();
+        }
+    });
 
-function clearForm() {
-    document.getElementById('form').reset();
-    document.getElementById('product').focus();
-}
+    function updateTotal() {
+        let total = 0;
+        tbody.querySelectorAll('tr').forEach(row => {
+            const totalPrice = parseFloat(row.querySelector('td:nth-child(4)').textContent.replace('$', ''));
+            total += totalPrice;
+        });
+        totalElement.textContent = total.toFixed(2);
+    }
+});
