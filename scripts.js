@@ -41,22 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const downloadBtn = document.getElementById('download-pdf');
-
-    downloadBtn.addEventListener('click', function() {
-        const doc = new jsPDF();
-
-        doc.text('Lista de Compras', 20, 10);
-
-        const table = document.getElementById('shopping-list');
-        const tableHtml = table.outerHTML;
-
-        doc.autoTable({ html: tableHtml });
-
-        // Descarga el archivo PDF con nombre 'lista_compras.pdf'
-        doc.save('lista_compras.pdf');
-    });
-
     function updateTotal() {
         let total = 0;
         tbody.querySelectorAll('tr').forEach(row => {
